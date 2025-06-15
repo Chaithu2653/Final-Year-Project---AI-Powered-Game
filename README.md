@@ -42,7 +42,7 @@ The system supports conversations even when the NPC’s face isn’t visible—l
 🕹️ Game-Friendly Design
 No mods or source code edits are required. This system is designed to work with any game, seamlessly overlaying itself on top of existing visuals.
 
-Prerequisites 🚀🔧
+## Prerequisites 🚀🔧
 🐍 Python 3.10.6
 Download and install from: https://www.python.org/downloads/release/python-3106/
 ✅ Make sure to check the "Add to PATH" option during installation.
@@ -178,13 +178,13 @@ Point camera at an NPC
 
 🔊 Can interact with offscreen NPCs (horse rides, combat, etc.).
 
-Conclusion and Contribution 🤝🎮
+## Conclusion and Contribution 🤝🎮
 Interactive LLM Powered NPCs adds deep realism to your games through natural conversations.
 💡 Add your game to the Games folder and submit a Pull Request to help others.
 👨‍💻 You can also contribute code, fix bugs, or suggest ideas.
 Let’s reshape how gamers interact with NPCs, together.
 
-Tools Used 🚀🧰
+## Tools Used 🚀🧰
 🍪 Cohere + LangChain for LLMs
 
 🍩 SadTalker for facial animation
