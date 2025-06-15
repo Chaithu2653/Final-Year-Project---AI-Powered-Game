@@ -1,198 +1,75 @@
-## Overview 🎮🧠✨
-Interactive LLM-Powered NPCs is an open-source project that redefines how players interact with non-player characters (NPCs) in games. With this system, you can speak directly to NPCs using your microphone and engage in dynamic, unscripted conversations—bringing a whole new level of realism to your favorite titles.
+# AI-Powered Game
 
-Powered by technologies like SadTalker for real-time lip-syncing, facial recognition to distinguish NPCs, and vector stores for persistent memory, the system tailors each interaction to match the character’s personality and knowledge. It even detects your facial expressions through your webcam 🎥, adding emotional depth to every encounter.
+## Introduction
 
-Built for existing games like Cyberpunk 2077, Assassin’s Creed, and GTA V, this project enhances worlds that already feel alive—but lacked true conversational immersion. Now, players can talk to any NPC and experience story-rich gameplay that the original developers never included.
+The AI-Powered Game project is designed to explore the potential of conversational artificial intelligence within interactive gaming environments. Traditional non-playable characters (NPCs) in games rely on predetermined dialogue trees, offering limited and often repetitive interactions. This project replaces static NPC behavior with dynamic, context-aware conversational agents powered by large language models (LLMs).
 
-No need to dive into game files or do heavy modding 🛠️. Instead, the system cleverly replaces facial pixels in real time, seamlessly blending animated expressions into the game environment.
+By integrating natural language processing, speech synthesis, and memory-based interaction models, this system allows game characters to engage players in real-time, personalized dialogue. These characters are capable of remembering past interactions, responding with emotional nuance, and adjusting their behavior based on ongoing player input, resulting in a more immersive and engaging gaming experience.
 
-Whether you're climbing ancient towers in Assassin’s Creed Valhalla or strolling through the neon-lit streets of Night City, Interactive LLM-Powered NPCs delivers immersive, lifelike conversations that bring the virtual world to life like never before 🚀.
+## Technology Stack
 
-## How It Works 🧩🗣️
-The magic behind Interactive LLM-Powered NPCs is just as impressive as the conversations it creates. Here's how everything comes together to deliver lifelike interactions in your favorite games:
+### Programming Language
 
-🎤 Voice Input
-Simply speak into your microphone—your voice is instantly converted into text, becoming the starting point for the interaction.
+- **Python 3.12**: Chosen for its simplicity, rich ecosystem, and compatibility with AI libraries.
 
-🧍‍♂️ Facial Recognition
-The system uses facial recognition to detect which NPC you're talking to, whether it's a major side character or a random background figure.
+### Backend Frameworks and Libraries
 
-🔎 Character Identification
-Once recognized, a unique personality and name are created for background NPCs. For known side characters, the system accesses their pre-defined traits, backstory, and knowledge.
+- **FastAPI or Flask**: Lightweight web frameworks for handling API requests between the game interface and the AI models.
+- **LangChain**: A high-level framework for building applications powered by LLMs, particularly useful for managing prompt templates, memory, and tool integration.
+- **OpenAI GPT-3.5 / GPT-4**: The language models used to generate human-like dialogue and reasoning for in-game characters.
+- **ChromaDB / FAISS**: Vector databases used to store and retrieve contextual embeddings that support character memory and continuity in conversations.
+- **PyAudio and SpeechRecognition**: Used to capture and process voice inputs from players in real-time.
+- **ElevenLabs or Edge-TTS**: Text-to-speech services used to convert LLM-generated responses into audio, enabling seamless voice-based interactions with players.
 
-🧠 LLM Response Generation
-The transcribed dialogue and character details are passed to a Large Language Model (LLM). It uses this information—along with a vector store containing lore, memory, and character-specific context—to generate an appropriate response.
+### Optional Frontend and Game Engine Integration
 
-📄 Pre-Conversation Prompts
-To ensure authenticity, the system references a pre-conversation.json file, which includes signature lines and speech patterns for each NPC. These help the LLM maintain the character's voice and personality.
+- **React or Three.js**: Can be used for custom game UI overlays that display dialogue and interaction logs.
+- **Unity or Unreal Engine**: For integrating AI logic into 3D or 2D gameplay environments, including triggering animations, actions, or events based on conversational cues.
 
-🗣️ Speech and Lip Sync
-The LLM's response is transformed into speech using text-to-speech synthesis. A facial animation is then generated by applying this voice to the NPC’s face, producing realistic lip movements using tools like SadTalker.
+### Supporting Tools
 
-🎮 In-Game Integration
-This facial animation video is layered onto the game by replacing the NPC’s on-screen facial pixels. It looks like the character is genuinely talking—without changing the game’s source code or assets.
+- **pipwin**: Simplifies installation of Windows-specific binary dependencies.
+- **Virtual Environments**: Used to isolate dependencies and maintain reproducible environments across systems.
 
-😊 Emotion Detection
-Your webcam captures your facial expressions in real-time. NPCs can detect your mood and adjust their tone and responses to match, creating deeper, emotionally aware conversations.
+## System Overview
 
-🏇 Hands-Free, Anywhere Interactions
-The system supports conversations even when the NPC’s face isn’t visible—like during horseback rides, distant scenes, or combat. Just say the character's name, followed by your message, and the interaction unfolds naturally—dialogue, response, and voice included.
+The core functionality of the AI-Powered Game is organized around several coordinated components:
 
-🕹️ Game-Friendly Design
-No mods or source code edits are required. This system is designed to work with any game, seamlessly overlaying itself on top of existing visuals.
+1. **Voice Input Processing**: 
+   Players speak into a microphone. Their voice is captured using `PyAudio` and transcribed using `SpeechRecognition`.
 
-## Prerequisites 🚀🔧
-🐍 Python 3.10.6
-Download and install from: https://www.python.org/downloads/release/python-3106/
-✅ Make sure to check the "Add to PATH" option during installation.
+2. **Query Handling and LLM Response Generation**:
+   The transcribed input is processed through LangChain and sent to an LLM. The model evaluates the current context, relevant memory embeddings, and user intent before generating a response.
 
-🐙 GIT
-Download and install Git from: https://git-scm.com/downloads
+3. **Contextual Memory Management**:
+   ChromaDB or FAISS stores conversation history and embeddings. This allows the NPC to maintain long-term memory, improving character consistency and realism over time.
 
-🌐 wget
-Install wget, a command-line tool to download files from the web.
+4. **Text-to-Speech Rendering**:
+   The generated response is vocalized using ElevenLabs or Edge-TTS. Voice output is either streamed back to the player or played within the game client.
 
-🛠️ Microsoft Build Tools and Visual Studio
-Install from the following links:
-🔗 https://visualstudio.microsoft.com/downloads/?q=build+tools#visual-studio-professional-2022
-🔗 https://visualstudio.microsoft.com/downloads/?q=build+tools#build-tools-for-visual-studio-2022
+5. **Game Logic Integration**:
+   The backend can trigger in-game events or actions based on the player's statements. For example, asking a character for help may unlock a quest or provide critical game hints.
 
-🎥🔊 FFmpeg
-Install FFmpeg for audio and video processing.
-📘 Instructions: https://www.wikihow.com/Install-FFmpeg-on-Windows
 
-Installation 🔌✨
-Open a terminal.
+## Limitations
 
-Clone the repository:
-git clone https://github.com/AkshitIreddy/Interactive-LLM-Powered-NPCs.git
+While the project showcases promising results, several limitations remain:
 
-Navigate to the repository folder:
-cd Interactive-LLM-Powered-NPCs
+- **Latency**: Processing time for speech recognition, LLM inference, and speech synthesis can introduce noticeable delays.
+- **API Dependency and Cost**: Relying on commercial APIs like OpenAI and ElevenLabs can result in high operational costs, especially in large-scale games.
+- **Offline Capability**: Most models require internet connectivity and cloud infrastructure. Offline support is limited without major sacrifices in quality.
+- **Emotion and Personality Modeling**: While memory and tone can be adjusted, achieving nuanced emotional modeling and long-term character development still poses challenges.
+- **Scalability**: Integrating AI-powered NPCs in large-scale multiplayer environments requires robust infrastructure and load balancing strategies.
 
-Create a virtual environment:
-python -m venv .venv
+## Conclusion
 
-Activate the environment:
-.venv\scripts\activate
+The AI-Powered Game project demonstrates how LLMs can be used to enhance game interactivity by enabling intelligent and emotionally responsive NPCs. By incorporating memory, voice interaction, and real-time response generation, the system significantly improves the depth and flexibility of in-game dialogue.
 
-Install dependencies:
-pip install -r requirements.txt
+## Team
 
-Open Git Bash and navigate to the project folder.
-
-Go to SadTalker directory:
-cd sadtalker
-
-Download models:
-bash scripts/download_models.sh
-
-Double-click "webui.bat" inside "sadtalker" and wait until you see “WebUI launched” then close the terminal.
-
-🆓 Create a Cohere account and add your trial API key to apikeys.json
-
-🗑️ Delete all files and folders inside the video_temp and temp folders.
-
-VSCode Setup with Jupyter Support 👨‍💻📔
-Install Visual Studio Code.
-
-Click Extensions icon (🧩) and install:
-
-Jupyter 📓
-
-Python 🐍
-
-Open terminal → navigate to root folder → type:
-code .
-
-If Jupyter doesn't detect .venv as a kernel, go to File > Open Folder and reselect the root project folder.
-
-Directions for Use 🛠️🤓
-📁 Create a folder in root with your game name, replacing spaces with underscores.
-Example: Assasins_Creed_Valhalla
-
-📝 Inside it, create world.txt — describe your game's world.
-
-📝 Create public_info.txt — details any lore, major events, known facts.
-
-📔 Open create_public_vectordb.ipynb, set game_name, run both cells to create and test public vector DB.
-
-📂 Inside your game folder, create npc_personality_creation
-➕ Copy audio_mode_create_personality.py and video_mode_personality.py from Cyberpunk_2077/npc_personality_creation
-🧠 Modify the template variable with NPC names and personalities relevant to your game.
-💡 Use ChatGPT to help generate new ones.
-➕ Replace the same files inside the functions folder.
-
-📂 Inside game folder, create a folder called characters
-➕ Copy the default folder from Cyberpunk_2077/characters
-✏️ Edit pre_conversation.json with common NPC lines from your game.
-💬 Use prompt:
-“Give 30 common dialogue that people in [Your Game] say, in this format:
-{ "pre_conversation": [ { "line": "..." }, ... ] }”
-
-📂 For each side character, create a folder inside characters
-📸 Inside it, add an images folder with 5 photos of the character (JPG only, no other people).
-
-📔 Open create_face_recognition_representation.ipynb
-➕ Set character_name and game_name, run both cells to generate face data.
-
-📝 Inside character folder, create bio.txt — a short summary of the character.
-
-📝 Create character_knowledge.txt — private info not in public DB.
-
-📔 Open create_character_vectordb.ipynb, set the variables, and run to generate their vector DB.
-
-📝 Create pre_conversation.json — with lines the character commonly says.
-
-📝 Create conversation.json — copy from another character like Jackie Welles and modify.
-
-📂 Create a voice folder
-➕ Add voice.py with a create_speech function
-🎙️ Modify it to match your character’s voice
-🧪 Use voice_selection.ipynb to pick a voice
-🗣️ If using voice cloning, keep the same create_speech signature and avoid relative paths.
-
-🔁 Repeat for more characters.
-
-Play the Game 🎮🚀
-Launch your game.
-
-Open main.ipynb
-
-Set: player_name, game_name, interact_key
-
-Run the second cell
-
-If using two monitors: drag window to second screen
-
-If single monitor: copy contents from miscellaneous/Single Monitor to root
-
-Set game_screen_name in main.ipynb
-
-Point camera at an NPC
-➡️ Click the new window
-➡️ Hold the interact key
-🎤 Speak your dialogue
-🗣️ You’ll see a response with voice + facial animation.
-
-🔊 Can interact with offscreen NPCs (horse rides, combat, etc.).
-
-## Conclusion and Contribution 🤝🎮
-Interactive LLM Powered NPCs adds deep realism to your games through natural conversations.
-💡 Add your game to the Games folder and submit a Pull Request to help others.
-👨‍💻 You can also contribute code, fix bugs, or suggest ideas.
-Let’s reshape how gamers interact with NPCs, together.
-
-## Tools Used 🚀🧰
-🍪 Cohere + LangChain for LLMs
-
-🍩 SadTalker for facial animation
-
-🍰 Edge-TTS for default voices
-
-🧁 DeepFace for facial recognition and emotion detection
-
-🍭 Chromadb for vector DBs
-
-🍬 SpeechRecognition for voice-to-text
+| Name               | GitHub Profile                                          |
+|--------------------|---------------------------------------------------------|
+| Chinmayee N Holla    | [github.com/chinholla](https://github.com/ChinmayeeHolla) |
+| Chaithu A | [github.com/Chaithu2653](https://github.com/Chaithu2653)                           |
+| B M Nitish Kumar | [github.com/BMNITISHKUMAR](https://github.com/BMNITISHKUMAR)                           |
+| Nuthank K Gowda | [github.com/NuthanKGowda](https://github.com/NuthanKGowda)                         |
